@@ -1,0 +1,30 @@
+# Binarios generados y archivos compilados
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Artefactos de compilación y salida (APK, AAB, etc.)
+*.apk
+*.aab
+*.out
+/build/
+
+# Dependencias vendorizadas (si las usas)
+vendor/
+
+# Archivos y carpetas de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de IDEs y editores
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos de log y temporales
+*.log
+tmp/

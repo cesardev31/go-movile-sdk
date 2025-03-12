@@ -1,0 +1,16 @@
+[App]
+Name = "MiApp Go SDK"
+Version = "1.0.0"
+Debug = true
+ID = "com.miempresa.miapp"
+
+[Server]
+Host = "api.miapp.com"
+Port = 443
+
+[Auth]
+TokenExpiry = 3600
+SecretKey = "supersecreto"
+
+[UI]
+Theme = "dark"

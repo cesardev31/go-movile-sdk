@@ -6,12 +6,6 @@ import (
 	"os/exec"
 )
 
-func CreateNewProject() {
-	fmt.Println("Creando nuevo proyecto...")
-
-	fmt.Println("Estructura del proyecto creada.")
-}
-
 func BuildDebug() {
 	fmt.Println("Compilando APK en modo debug...")
 	cmd := exec.Command("fyne", "package", "-os", "android", "-icon", "assets/icon.png")

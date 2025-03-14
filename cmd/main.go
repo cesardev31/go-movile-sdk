@@ -17,8 +17,18 @@ func main() {
 	cmd := os.Args[1]
 
 	switch cmd {
+	case "create":
+		if len(os.Args) < 5 || os.Args[2] != "app" {
+			fmt.Println("Uso: gosdk create app <app-name> <module-name>")
+			os.Exit(1)
+		}
+		appName := os.Args[3]
+		moduleName := os.Args[4]
+		if err := internal.CreateNewProject(appName, moduleName); err != nil {
+			log.Fatalf("Error creando el proyecto: %v", err)
+		}
+		fmt.Printf("Proyecto '%s' creado exitosamente.\n", appName)
 	case "run":
-		// Ejemplo: ./gosdk run debug
 		if len(os.Args) < 3 {
 			fmt.Println("Falta el modo: debug | release")
 			os.Exit(1)
@@ -26,7 +36,6 @@ func main() {
 		mode := os.Args[2]
 		runApp(mode)
 	case "build":
-		// Ejemplo: ./gosdk build debug
 		if len(os.Args) < 3 {
 			fmt.Println("Falta el modo: debug | release")
 			os.Exit(1)
@@ -34,7 +43,6 @@ func main() {
 		mode := os.Args[2]
 		buildApp(mode)
 	case "test":
-		// Ejemplo: ./gosdk test
 		internal.RunTests()
 	default:
 		fmt.Println("Comando no reconocido:", cmd)
@@ -78,26 +86,16 @@ func runApp(mode string) {
 }
 
 func buildApp(mode string) {
-	// Solo compila la app, sin instalar ni lanzar
-	switch mode {
-	case "debug", "release":
-		err := internal.FyneBuild(mode, "com.miempresa.miapp", "miapp")
-		if err != nil {
-			log.Fatalf("Error compilando APK: %v", err)
-		}
-		fmt.Println("Build completado en modo", mode)
-	default:
-		log.Fatalf("Modo no soportado: %s", mode)
-	}
 }
 
 func printHelp() {
-	fmt.Println("Uso: gosdk [run|build|test] <opciones>")
+	fmt.Println("Uso: gosdk [create|run|build|test] <opciones>")
 	fmt.Println("")
 	fmt.Println("Comandos:")
-	fmt.Println("  run debug     Inicia el emulador (si es necesario), compila en modo debug, instala y lanza la app.")
-	fmt.Println("  run release   Lo mismo que 'debug' pero en modo release.")
-	fmt.Println("  build debug   Compila en modo debug y genera el APK (sin instalar).")
-	fmt.Println("  build release Compila en modo release y genera el APK (sin instalar).")
-	fmt.Println("  test          Ejecuta los tests.")
+	fmt.Println("  create app <app-name> <module-name>   Crea un nuevo proyecto con la estructura base")
+	fmt.Println("  run debug     Inicia el emulador, compila en modo debug, instala y lanza la app")
+	fmt.Println("  run release   Igual que run debug pero en modo release")
+	fmt.Println("  build debug   Compila en modo debug y genera el APK (sin instalar)")
+	fmt.Println("  build release Compila en modo release y genera el APK (sin instalar)")
+	fmt.Println("  test          Ejecuta los tests")
 }

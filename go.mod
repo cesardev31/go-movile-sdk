@@ -1,4 +1,4 @@
-module go-mobile-sdk
+module github.com/cesardev31/go-movile-sdk
 
 go 1.23.2
 

@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"go-mobile-sdk/internal"
+	"github.com/cesardev31/go-movile-sdk/internal"
 )
 
 func main() {
